@@ -1,11 +1,136 @@
+Abstraction in Object-Oriented Programming (OOP) is a way to hide complex implementation details and only expose the necessary and relevant information. 
+In C#, abstraction is typically implemented using abstract classes or interfaces. 
+These allow us to define a blueprint without providing the full implementation, 
+leaving the specifics to be filled in by derived classes or implementing classes.
 
+// Abstract class
+public abstract class Animal
+{
+    // Abstract method (no implementation)
+    public abstract void MakeSound();
 
+    // Non-abstract method (common behavior)
+    public void Sleep()
+    {
+        Console.WriteLine("Sleeping...");
+    }
+}
 
+// Dog class inherits from Animal and provides implementation for MakeSound
+public class Dog : Animal
+{
+    public override void MakeSound()
+    {
+        Console.WriteLine("Woof!");
+    }
+}
 
+// Cat class inherits from Animal and provides implementation for MakeSound
+public class Cat : Animal
+{
+    public override void MakeSound()
+    {
+        Console.WriteLine("Meow!");
+    }
+}
 
+public class Program
+{
+    public static void Main()
+    {
+        // Creating instances of Dog and Cat
+        Animal myDog = new Dog();
+        Animal myCat = new Cat();
 
+        // Calling the abstract method MakeSound()
+        myDog.MakeSound();  // Outputs: Woof!
+        myCat.MakeSound();  // Outputs: Meow!
 
+        // Calling the non-abstract method Sleep()
+        myDog.Sleep();  // Outputs: Sleeping...
+        myCat.Sleep();  // Outputs: Sleeping...
+    }
+}
 
+Explanation:
+
+    Abstract Class: 
+    The Animal class is abstract, meaning it cannot be instantiated directly. 
+    It provides an abstract method MakeSound() that has no implementation and forces derived classes (e.g., Dog and Cat) to implement this method.
+    Non-Abstract Method: 
+    The Sleep() method in the Animal class is a concrete method with an implementation, so it's shared by all derived classes.
+
+In this example, the complex behavior of each animal's sound is abstracted away in the Animal class, while the specific implementation is left to the Dog and Cat classes.
+
+// Interface
+public interface IAnimal
+{
+    void MakeSound();  // Abstract method by default
+    void Sleep();      // Abstract method by default
+}
+
+// Implementing the interface in Dog class
+public class Dog : IAnimal
+{
+    public void MakeSound()
+    {
+        Console.WriteLine("Woof!");
+    }
+
+    public void Sleep()
+    {
+        Console.WriteLine("Dog is sleeping...");
+    }
+}
+
+// Implementing the interface in Cat class
+public class Cat : IAnimal
+{
+    public void MakeSound()
+    {
+        Console.WriteLine("Meow!");
+    }
+
+    public void Sleep()
+    {
+        Console.WriteLine("Cat is sleeping...");
+    }
+}
+
+public class Program
+{
+    public static void Main()
+    {
+        // Creating instances using the interface
+        IAnimal myDog = new Dog();
+        IAnimal myCat = new Cat();
+
+        // Calling interface methods
+        myDog.MakeSound();  // Outputs: Woof!
+        myDog.Sleep();      // Outputs: Dog is sleeping...
+
+        myCat.MakeSound();  // Outputs: Meow!
+        myCat.Sleep();      // Outputs: Cat is sleeping...
+    }
+}
+
+Explanation:
+
+    Interface: 
+    The IAnimal interface contains method declarations, but no implementations. 
+    It defines the contract that any class implementing it must follow by providing its own implementations of MakeSound() and Sleep().
+    Implementation: 
+    Both Dog and Cat classes implement the IAnimal interface and provide specific implementations for MakeSound() and Sleep().
+
+In this case, the interface IAnimal abstracts away the specific animal behavior, and the classes that implement the interface provide the actual implementations.
+Key Differences Between Abstract Class and Interface:
+
+    Abstract Class: 
+    Can have both abstract methods (without implementation) and concrete methods (with implementation).
+    Interface: 
+    Only contains method signatures (declarations), all methods are abstract by default. A class implementing the interface must provide an implementation for all methods.
+
+Both approaches promote abstraction by hiding the complexity of method implementations while providing a blueprint for the behavior.
 
 
 
@@ -32,9 +157,23 @@
 
 
 ----------------------------------------------------------------------------
-hi and welcome to the 20th part of this c-sharp for beginners course this tutorial will focus on c-sharp interfaces in this c-sharp for beginners course we have covered the three main aspects of object-oriented programming namely encapsulation inheritance and polymorphism links to the tutorials on these topics have been included below in the description another important aspect of object-oriented programming is abstraction in c-sharp abstracting general rules and functionality before implementing functional code logic
-detail when constructing an application can be achieved through the use of abstract classes and interfaces in this tutorial we're going to focus on interfaces in the context of object-oriented programming abstraction essentially involves the separation of design implementation from concrete code logical implementation so interfaces and abstract classes can be used in c-sharp to implement the design of an application and code the design on its own however is meaningless without the appropriate functional logical code
-implementation detail abstracting codes so that types are loosely coupled and provide a flexible and extensible design for your applications prior let's explore c-sharp interfaces through a code example [Music] [Applause] let's first create a project using the console app net core project template I'm going to name this project interfaces tutorial so the theme of this code example will relate to a construction company please remember to like subscribe share comment to support the channel it will be greatly
+
+
+important aspect of object-oriented programming is abstraction 
+in c-sharp abstracting general rules and functionality before implementing functional code logic
+detail when constructing an application can be achieved through the use of abstract classes and interfaces 
+
+abstraction 
+essentially involves the separation of design implementation from concrete code logical implementation 
+so interfaces and abstract classes can be used in c-sharp to implement the design of an application and code the design on its own 
+however is meaningless without the appropriate functional logical code
+
+implementation detail abstracting codes so that types are loosely coupled and provide a flexible and extensible design 
+for your applications prior 
+
+let's explore c-sharp interfaces through a code example [Music] [Applause] let's first create a project using the console app net core project template 
+I'm going to name this project interfaces tutorial so the theme of this code example will relate to a construction
+company please remember to like subscribe share comment to support the channel it will be greatly
 appreciated let's start with a basic class named employee and let's add some readwrite Auto implemented properties to the employee class notice that these properties all have both get inset sections which means the calling code can both read values from these properties as well as assign values to these properties so as you can see the get basic information member is a method the function of this method is to serialize certain property data and return this data to the calling code so let's test the employee class by writing
 code in the main method to instantiate an object from the employee class and assign appropriate values to the properties contained within the employee class let's then write code to call the get basic information method and write the returned string value to the console screen let's run the code and you can see the property values are written to the screen and the format that was coded in the get basic information method okay so in this application we want to include many types of employees that you may find in
 a construction company we can encapsulate the employee types within appropriate classes based on the employees respective roles for example we could have a class named crane operator and a class named electrician to encapsulate data and behavior for each of these types of employees but there's certain common data and behaviors that can be applied to all employees regardless of the employees respective roles so how can we ensure that our application reuses functionality across multiple employee types well we can start by abstracting a
