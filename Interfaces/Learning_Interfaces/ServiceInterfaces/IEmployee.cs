@@ -1,4 +1,4 @@
-﻿namespace Learning_Interfaces;
+﻿namespace Learning_Interfaces.ServiceInterfaces;
 
 public interface IEmployee
 {

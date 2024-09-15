@@ -1,3 +1,9 @@
-﻿using Learning_Interfaces;
+﻿using Learning_Interfaces.ServiceImplementations;
 
 EmployeeProgram.EmployeeProgramMain();
+
+EmployeesProgram.EmployeesProgramMain();
+
+CraneOperatorProgram.CraneOperatorProgramMain();
+
+

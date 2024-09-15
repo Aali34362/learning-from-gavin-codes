@@ -1,6 +1,6 @@
 ﻿using Dumpify;
 
-namespace Learning_Interfaces;
+namespace Learning_Interfaces.ServiceImplementations;
 
 public static class EmployeeProgram
 {
@@ -29,10 +29,10 @@ public class Employee
 
     public string GetBasicInformation()
     {
-        return 
+        return
             $"{Environment.NewLine}ID : {Id}" +
             $"{Environment.NewLine}Job Title : {JobTitle}" +
-            $"{Environment.NewLine}First Name : {FirstName}"+
+            $"{Environment.NewLine}First Name : {FirstName}" +
             $"{Environment.NewLine}Last Name : {LastName}";
     }
 }
