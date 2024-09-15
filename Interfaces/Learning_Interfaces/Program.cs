@@ -14,6 +14,10 @@ var host = Host.CreateDefaultBuilder(args)
         services.AddSingleton<ICraneOperatorResponsibilities, CraneOperator>();
         services.AddSingleton<IContractEmployee, CraneOperator>();
 
+        services.AddSingleton<IEmployee, HumanResource>();
+        services.AddSingleton<IManagerialResponsibilities, HumanResource>();
+        services.AddSingleton<IContractEmployee, HumanResource>();
+
         // Register CraneOperatorService
         services.AddTransient<RoleServices>();
 
@@ -25,8 +29,9 @@ var host = Host.CreateDefaultBuilder(args)
     .Build();
 
 // Now resolve and run your services
-var craneOperatorService = host.Services.GetRequiredService<RoleServices>();
-craneOperatorService.ProcessCraneOperator();
+var OperationService = host.Services.GetRequiredService<RoleServices>();
+OperationService.ProcessCraneOperator();
+OperationService.ProcessEmployee();
 
 // Directly call static methods
 ////EmployeeProgram.EmployeeProgramMain();

@@ -8,16 +8,24 @@ public static class EmployeesProgram
 {
     public static void EmployeesProgramMain()
     {
-        IEmployee employee = new Employees();
+        IEmployee employee = new HumanResource();
         employee.Id = 1;
         employee.FirstName = "Bob";
         employee.LastName = "Tom";
         employee.JobTitle = "Hacker";
         employee.GetBasicInformation().Dump();
+
+        IManagerialResponsibilities managerial = new HumanResource();
+        managerial.ConductMeeting();
+        managerial.AssignTasks();
+
+        IContractEmployee contract = new HumanResource();
+        contract.ContractEndDate = new DateTime(2025,01,01);
+        contract.RenewContract();
     }
 }
 
-public class Employees : IEmployee, IManagerialResponsibilities, IContractEmployee
+public class HumanResource : IEmployee, IManagerialResponsibilities, IContractEmployee
 {
     public int Id { get; set; }
     public string? JobTitle { get; set; }
