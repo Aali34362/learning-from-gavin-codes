@@ -3,6 +3,43 @@ using Dumpify;
 using Learning_Interfaces.ServiceInterfaces;
 
 namespace Learning_Interfaces.ServiceImplementations;
+
+public class CraneOperatorService
+{
+    private readonly IEmployee _employee;
+    private readonly ICraneOperatorResponsibilities _responsibilities;
+    private readonly IContractEmployee _contractEmployee;
+
+    public CraneOperatorService(
+        IEmployee employee,
+        ICraneOperatorResponsibilities responsibilities,
+        IContractEmployee contractEmployee)
+    {
+        _employee = employee;
+        _responsibilities = responsibilities;
+        _contractEmployee = contractEmployee;
+    }
+
+    public void ProcessCraneOperator()
+    {
+        // Since we used Singleton, the object is shared
+        _employee.FirstName = "Jesse";  // You can still set properties
+        _employee.LastName = "Thompson";
+        _employee.JobTitle = "Crane Operator";
+        _employee.JoinDate = new DateTime(2010, 01, 01);
+
+        Console.WriteLine(_employee.GetBasicInformation());
+
+        // Crane-specific tasks
+        _responsibilities.InspectCrane();
+        _responsibilities.OperateCrane();
+
+        // Contract-related
+        Console.WriteLine($"Current contract end date: {_contractEmployee.ContractEndDate.ToShortDateString()}");
+        _contractEmployee.RenewContract();  // Renew the contract
+    }
+}
+
 public static class CraneOperatorProgram
 {
     public static void CraneOperatorProgramMain()
@@ -35,6 +72,37 @@ public static class CraneOperatorProgram
         contract.RenewContract(); // This extends the contract further
     }
 }
+
+public static class CraneOperatorGPTProgram
+{
+    public static void CraneOperatorGPTProgramMain()
+    {
+        // Use dependency injection to get instances, or directly instantiate for simplicity
+        CraneOperator craneOperator = new();
+        craneOperator.Id = 1;
+        craneOperator.FirstName = "Jesse";
+        craneOperator.LastName = "Thompson";
+        craneOperator.JobTitle = "Crane Operator";
+        craneOperator.JoinDate = new DateTime(2010, 01, 01);
+        craneOperator.ContractEndDate = new DateTime(2023, 09, 01);
+        // Output basic information
+        Console.WriteLine(craneOperator.GetBasicInformation());
+
+        // Full years worked
+        Console.WriteLine($"Years worked: {craneOperator.GetFullYearWorked()}");
+
+        // Crane-specific tasks
+        craneOperator.InspectCrane();
+        craneOperator.OperateCrane();
+
+        // Output current contract details
+        Console.WriteLine($"Current contract end date: {craneOperator.ContractEndDate.ToShortDateString()}");
+
+        // Renew the contract
+        craneOperator.RenewContract();
+    }
+}
+
 public class CraneOperator : IEmployee, ICraneOperatorResponsibilities, IContractEmployee
 {
     public int Id { get; set; }
