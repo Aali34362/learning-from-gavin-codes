@@ -4,42 +4,6 @@ using Learning_Interfaces.ServiceInterfaces;
 
 namespace Learning_Interfaces.ServiceImplementations;
 
-public class CraneOperatorService
-{
-    private readonly IEmployee _employee;
-    private readonly ICraneOperatorResponsibilities _responsibilities;
-    private readonly IContractEmployee _contractEmployee;
-
-    public CraneOperatorService(
-        IEmployee employee,
-        ICraneOperatorResponsibilities responsibilities,
-        IContractEmployee contractEmployee)
-    {
-        _employee = employee;
-        _responsibilities = responsibilities;
-        _contractEmployee = contractEmployee;
-    }
-
-    public void ProcessCraneOperator()
-    {
-        // Since we used Singleton, the object is shared
-        _employee.FirstName = "Jesse";  // You can still set properties
-        _employee.LastName = "Thompson";
-        _employee.JobTitle = "Crane Operator";
-        _employee.JoinDate = new DateTime(2010, 01, 01);
-
-        Console.WriteLine(_employee.GetBasicInformation());
-
-        // Crane-specific tasks
-        _responsibilities.InspectCrane();
-        _responsibilities.OperateCrane();
-
-        // Contract-related
-        Console.WriteLine($"Current contract end date: {_contractEmployee.ContractEndDate.ToShortDateString()}");
-        _contractEmployee.RenewContract();  // Renew the contract
-    }
-}
-
 public static class CraneOperatorProgram
 {
     public static void CraneOperatorProgramMain()
@@ -50,26 +14,23 @@ public static class CraneOperatorProgram
         employee.LastName = "Thompson";
         employee.JobTitle = "Crane Operator";
         employee.JoinDate = new DateTime(2010, 01, 01);
-        //employee.ContractEndDate = new DateTime(2023, 09, 01); // Contract has expired
         employee.GetBasicInformation().Dump();
         
         // You can cast the IEmployee to CraneOperator to access the method
         var craneOperator = (CraneOperator)employee;
-        craneOperator.GetFullYearWorked().Dump();  // Works because it's casted to CraneOperator
+        //craneOperator.ContractEndDate = new DateTime(2023, 09, 01);
+        $"Years worked: {craneOperator.GetFullYearWorked()}".Dump(); // Works because it's casted to CraneOperator
 
-        ICraneOperatorResponsibilities responsibilities = new CraneOperator();
+        ICraneOperatorResponsibilities responsibilities = craneOperator;
         responsibilities.InspectCrane();
         responsibilities.OperateCrane();
 
-
         // Output current contract details
-        Console.WriteLine($"Current contract end date: {craneOperator.ContractEndDate.ToShortDateString()}");
-        IContractEmployee contract = new CraneOperator();
+        IContractEmployee contract = craneOperator;
         // Renew the contract
+        contract.ContractEndDate = new DateTime(2024, 01, 01);
         contract.RenewContract(); // Renew logic is applied based on the current date
 
-        // Renew the contract again (just to show the behavior when the contract is still valid)
-        contract.RenewContract(); // This extends the contract further
     }
 }
 
@@ -80,7 +41,7 @@ public static class CraneOperatorGPTProgram
         // Use dependency injection to get instances, or directly instantiate for simplicity
         CraneOperator craneOperator = new();
         craneOperator.Id = 1;
-        craneOperator.FirstName = "Jesse";
+        craneOperator.FirstName = "Jane";
         craneOperator.LastName = "Thompson";
         craneOperator.JobTitle = "Crane Operator";
         craneOperator.JoinDate = new DateTime(2010, 01, 01);
@@ -133,11 +94,11 @@ public class CraneOperator : IEmployee, ICraneOperatorResponsibilities, IContrac
     // Specific methods for CraneOperator
     public void OperateCrane()
     {
-        Console.WriteLine("Operating crane...");
+        Console.WriteLine($"{FirstName} is Operating crane...");
     }
     public void InspectCrane()
     {
-        Console.WriteLine("Inspecting crane...");
+        Console.WriteLine($"{FirstName} is Inspecting crane...");
     }
     public void RenewContract()
     {
@@ -145,13 +106,13 @@ public class CraneOperator : IEmployee, ICraneOperatorResponsibilities, IContrac
         {
             // If the contract is expired, renew from the current date
             ContractEndDate = DateTime.Now.AddYears(1);
-            Console.WriteLine($"Contract renewed. New contract end date: {ContractEndDate.ToShortDateString()}");
+            Console.WriteLine($"Contract renewed of {FirstName} {LastName}. New contract end date: {ContractEndDate.ToShortDateString()}");
         }
         else
         {
             // If the contract is still valid, extend from the current contract end date
             ContractEndDate = ContractEndDate.AddYears(1);
-            Console.WriteLine($"Contract extended. New contract end date: {ContractEndDate.ToShortDateString()}");
+            Console.WriteLine($"Contract extended of {FirstName} {LastName}. New contract end date: {ContractEndDate.ToShortDateString()}");
         }
     }
 }
