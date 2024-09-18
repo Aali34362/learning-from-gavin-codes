@@ -29,12 +29,14 @@ var host = Host.CreateDefaultBuilder(args)
     .Build();
 
 // Now resolve and run your services
-var OperationService = host.Services.GetRequiredService<RoleServices>();
-OperationService.ProcessCraneOperator();
-OperationService.ProcessEmployee();
+////var OperationService = host.Services.GetRequiredService<RoleServices>();
+////OperationService.ProcessCraneOperator();
+////OperationService.ProcessEmployee();
 
 // Directly call static methods
 ////EmployeeProgram.EmployeeProgramMain();
 ////EmployeesProgram.EmployeesProgramMain();
 ////CraneOperatorProgram.CraneOperatorProgramMain();
 ////CraneOperatorGPTProgram.CraneOperatorGPTProgramMain();
+CivilEngineeringProgram.CivilEngineeringProgramMain();
+MechanicalEngineeringProgram.MechanicalEngineeringProgramMain();
