@@ -5,7 +5,7 @@ public static class InterfacesTutorialPart1
     public static void InterfacesTutorialMain(string[] args)
     {
 
-        IList<IEmployee> employees = new List<IEmployee>();
+        IList<IEmployees> employees = new List<IEmployees>();
 
         SeedData(employees);
 
@@ -15,7 +15,7 @@ public static class InterfacesTutorialPart1
 
     }
 
-    private static void SeedData(IList<IEmployee> employees)
+    private static void SeedData(IList<IEmployees> employees)
     {
         ChiefExecutiveOfficer chiefExecutiveOfficer = new ChiefExecutiveOfficer();
 
@@ -112,7 +112,7 @@ public static class InterfacesTutorialPart1
         Console.WriteLine();
     }
 
-    private static void WriteEmployeeInformationToScreen(IEmployee employee)
+    private static void WriteEmployeeInformationToScreen(IEmployees employee)
     {
         Console.Clear();
 
@@ -122,7 +122,7 @@ public static class InterfacesTutorialPart1
 
     }
 
-    private static void Navigation(IList<IEmployee> employees)
+    private static void Navigation(IList<IEmployees> employees)
     {
         int counter = 0;
 
@@ -157,7 +157,7 @@ public static class InterfacesTutorialPart1
 
 }
 
-public abstract class Employee : IEmployee
+public abstract class Employee : IEmployees
 {
 
     public int Id { get; set; }
@@ -190,7 +190,7 @@ public abstract class Employee : IEmployee
     }
 }
 
-public interface IEmployee
+public interface IEmployees
 {
     int Id { get; set; }
     string JobTitle { get; set; }
