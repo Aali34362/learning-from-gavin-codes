@@ -13,7 +13,7 @@ public abstract class Engineering : IEmployee
     public DateTime? JoinDate { get ; set ; }
     public string? HighestQualification { get ; set ; }
 
-    public string GetBasicInformation()
+    public virtual string GetBasicInformation()
     {
         return
             $"{Environment.NewLine}ID : {Id}" +
