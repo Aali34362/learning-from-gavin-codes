@@ -10,7 +10,7 @@ public abstract class Engineering : IEmployee
     public string? LastName { get ; set ; }
     public decimal? AnnualSalary { get ; set ; }
     public char? Gender { get ; set ; }
-    public DateTime? JoinDate { get ; set ; }
+    public DateTime JoinDate { get ; set ; }
     public string? HighestQualification { get ; set ; }
 
     public virtual string GetBasicInformation()

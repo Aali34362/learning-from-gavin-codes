@@ -135,9 +135,132 @@ Both approaches promote abstraction by hiding the complexity of method implement
 
 
 
+Interface :
 
+In C#, an interface is a contract that defines a set of methods or properties that a class or struct must implement. 
+Interfaces only define signatures of methods, properties, events, or indexers, without any actual implementation.
+Classes that implement an interface must provide the concrete implementation of its members.
 
+Key Characteristics of an Interface:
+    All members of an interface are abstract (implicitly, so no need to use the abstract keyword).
+    A class can implement multiple interfaces, even though it can inherit from only one class.
+    Interfaces define "what" a class must do, but not "how" it does it.
 
+public interface IAnimal
+{
+    void MakeSound();  // Interface method (no implementation)
+    void Sleep();      // Another interface method
+}
+
+// Defining the interface
+public interface IAnimal
+{
+    void MakeSound();  // Interface method with no body
+    void Sleep();      // Another interface method with no body
+}
+
+// Implementing the interface in the Dog class
+public class Dog : IAnimal
+{
+    public void MakeSound()
+    {
+        Console.WriteLine("Woof!");
+    }
+
+    public void Sleep()
+    {
+        Console.WriteLine("Dog is sleeping...");
+    }
+}
+
+// Implementing the interface in the Cat class
+public class Cat : IAnimal
+{
+    public void MakeSound()
+    {
+        Console.WriteLine("Meow!");
+    }
+
+    public void Sleep()
+    {
+        Console.WriteLine("Cat is sleeping...");
+    }
+}
+
+public class Program
+{
+    public static void Main()
+    {
+        // Creating instances of Dog and Cat using the interface type
+        IAnimal myDog = new Dog();
+        IAnimal myCat = new Cat();
+
+        // Calling methods defined in the interface
+        myDog.MakeSound();  // Outputs: Woof!
+        myDog.Sleep();      // Outputs: Dog is sleeping...
+
+        myCat.MakeSound();  // Outputs: Meow!
+        myCat.Sleep();      // Outputs: Cat is sleeping...
+    }
+}
+
+Explanation:
+
+    Interface Definition (IAnimal): The interface IAnimal defines two methods MakeSound() and Sleep() but provides no implementation.
+    Dog and Cat Classes: Both Dog and Cat classes implement the IAnimal interface, 
+    meaning they must provide concrete implementations for MakeSound() and Sleep().
+    Polymorphism: We can create objects (myDog, myCat) using the IAnimal interface type. 
+    The actual method that is executed depends on the runtime type (i.e., whether it's a Dog or a Cat).
+
+Multiple Interface Implementation:
+In C#, a class can implement multiple interfaces. This allows greater flexibility and modular design.
+
+// First interface
+public interface IAnimal
+{
+    void Eat();
+}
+
+// Second interface
+public interface ICreature
+{
+    void Move();
+}
+
+// Class implementing both interfaces
+public class Bird : IAnimal, ICreature
+{
+    public void Eat()
+    {
+        Console.WriteLine("Bird is eating...");
+    }
+
+    public void Move()
+    {
+        Console.WriteLine("Bird is flying...");
+    }
+}
+
+public class Program
+{
+    public static void Main()
+    {
+        Bird myBird = new Bird();
+        myBird.Eat();   // Outputs: Bird is eating...
+        myBird.Move();  // Outputs: Bird is flying...
+    }
+}
+
+Benefits of Using Interfaces:
+
+    Multiple Inheritance: 
+    C# does not support multiple inheritance for classes, but interfaces provide a way to implement multiple behaviors.
+    Loose Coupling: 
+    By depending on interfaces rather than specific classes, you can make your code more flexible and less tightly coupled to specific implementations.
+    Polymorphism: 
+    Interfaces support polymorphic behavior by allowing the use of interface types to refer to objects of classes that implement those interfaces.
+
+Interfaces are a powerful feature of C# that promote flexible and reusable code, allowing you to design systems that are easy to extend and maintain.S
 
 
 
@@ -230,3 +353,35 @@ implementation functionality was introduced in c-sharp version 8 so their newly 
 the interface must be implemented and the relevant class will strike an interface can inherit from other interfaces if for example a class implements an interface that inherits from other interfaces that class must implement code for all members ie for the interface included in the class's definition and the interfaces from which the interface included in the class's definition inherits the c-sharp member types that can be included in interfaces or methods properties indexes and events in part two of this tutorial
 we'll discuss the new functionality added in c-sharp version 8 where default implementations can now be included in interfaces so in this tutorial we looked at implicitly implemented interfaces and the next part of this tutorial will discuss explicitly implemented interfaces we'll continue with the example demonstrated in this tutorial and demonstrate how to implement interface members explicitly please like subscribe share and comment to support the channel that will be greatly appreciated and please ring the bells
 that you can be notified of future content which will be coming soon as always all code in this tutorial can be downloaded from github a link to the relevant repository has been included below in the description thank you and take care [Music] [Music] you
+
+
+---------------------------------------------------
+
+I want to demonstrate a new feature added in c-sharp version 8 where interfaces can include default implementations earlier in this tutorial we discussed that with interface code implementations for interface members was not possible this has changed in c-sharp version 8 where default implementations are now possible for members of interfaces if you wish to upgrade to c-sharp version 8 one way to do this is to upgrade your version of the.net core SDK to 3.
+0 and install the latest official release version of Visual Studio 2019 if you haven't already installed Visual Studio 2019 I have included a link below in the description to a video created for this channel that can help guide you with this installation process if you have already installed Visual Studio 2019 but you have not yet installed the latest version of the software you can use Visual Studio installer for this purpose I've included links below in the description to URLs that contain content that can help you with the subgrade so
+in order to demonstrate this new default implementation functionality for interfaces in c-sharp let's say that we have released a version of this code to clients and now we wish to include additional functionality for a subsequent release more specifically let's say that we wish to add a new method that will retrieve additional information from an employee's data we already have the get basic information method for retrieving basic information for employees so let's create a method name to get additional information and
+you can see that if we add a method definition forget additional information to the I employee interface that this breaks our application because we are violating the rules and forced by the c-shell compiler whereby a class that implements an interface must implement code for all its members so if we hover our mouse pointers over the red squiggly line presented under the I employee text in the employee class definition we can see that C sharp has presented us with an error message stating employee does not implement
+interface I employee dot get additional information so let's say for the moment we want to include the new get additional information method in the I employee interface but we don't yet know which additional information we wish to return to the calling client so we are able to include a default implementation and the I employee interface like this and now we are able to compile the let's say that for now we wish to return the employees join date and gender property values from the get additional
+information method so if a calling client calls the get additional information method like this the default code we have just implemented in the I employee interface will be executed this will of course apply to any class in our application that implements the I employee interface let's prove this by running the code and you can now see that the joint date and gender property values relating to all the employee objects is now included when traversing the employees generic list using the right and left arrow keys
+so the default implementation functionality for interfaces provided to us in c-sharp version 8 allows us to add a member to the AI employee interface without breaking existing code and let's say that the requirement for their get additional information method has now been firmly defined we can now implement code for this requirement by implementing code for the get additional information method in the employee class ie the class that implements the AI employee interface we can do this by implementing code for an interface
+member in the usual way like this so say the requirement is that the join date and the gender property values are okay as temporary defaults but we want our implementation to return the highest qualification property value you okay let's run the code and you can see that the highest qualification property value is now included in the output rather than the joint date and gender property values so let's prove that see shop versions prior to version 8 do not support default member implementations for interfaces so if I right-click on
+the property node in the solution Explorer window and click the property menu item then on the application screen we changed the target framework to the previous version of the dotnet core runtime installed on this PC so I'll change the version of the.net core runtime for this project to dotnet core version 2.
+2 the effect of this change is that version 8 of the c-sharp language will not be supported for this project and now you can see that the c-sharp compiler is flagging an error if we hover our mouse pointers over the red squiggly line under the get additional information default implementation of the I employee interface you can see a compile-time error is presented and this message states feature default interface implementation is not available in C sharp vision 7.
+3 please use language version 8.0 or later target runtime doesn't support default interface implementation so I think that message is pretty clear riots all changed the dotnet core runtime version backed net core version 3.0 and you can see that the default implementation for the get additional information method is once again accepted by the c-sharp compiler because c sharp vision 8 is now supported for this project so up until now we have focused on implicit implementations for interface members a developer is also able to create
+explicit implementations for interface members let's create an example to explore what is meant by an explicit implementation of interface members and how explicit of limitations for interface members can be useful so in this tutorial we have created our classes and its faces manually but we are able to generate code that serves as a starting point for classes and interfaces through appropriate templates provided by Visual Studio so to add an interface in this way let's right-click the property node in our
+solution Explorer window let's then select the add a new item menu item we are then presented with the add new item dialog box let's select the list item marked interface let's give our new interface a name we'll call this interface I apartment and there let's click the Add button and the interface file which contains the basic code for an interface structure is generated for us by visual studio so let's create a readwrite property definition of the integer data type named ID let's add
+another property definition which represents the floor number where the apartment is situated and let's add a readwrite property definition which when implemented by a derived class will store the size of the apartment measured in square meters this property is of the double dates tab and has named size and square meters so let's add another two interfaces the first interface is named I dimension metric it contains a method definition for a method that returns a value of the double date stuck this method is named get size so the second
+interface is named I dimension Imperial and notice this interface also contains a definition for a method name to get size that returns a value of type double both the I dimension imperial interface and the i dimension metric interface contain definitions for a method named get size and their method signatures are identical so let's add a class and name this class apartment and let's write code that implements the three in two phases that we just created namely the AI apartment interface the eye dimension metric interface and the eye
+dimension imperial interface let's then implement the members for the AI apartment interface implicitly like this now let's explicitly implement the gates method for the eye dimension metric interface so if we hover our mouse pointers over the red squiggly line under the eye dimension metric text in the apartment classes class definition then click show potential fixes then click the option marked implement interface explicitly Visual Studio generates an explicit implementation for the get sales member contained in the
+eye dimension metric interface and now let's follow the same steps for the eye dimension imperial interface and you can see that we now have two explicit implementations for the gate size method one implementation for the get size member contained in the eye dimension metric interface and one for the get sized member and the eye dimension imperial interface you can see that there is a very obvious difference between these two method definitions the one get size method definition has i dimension metric dot prefixing its
+method name in its method definition the other get size method definition has eye dimension imperial dot prefixing its method name in its method definition both gets ours methods do not contain any access modifiers so you can immediately see the difference in signatures of the get size methods that are explicitly implemented and the other members of the apartment class that are implicitly implemented so you may have guessed this but the get size method that implements the get Czar's member of the our dimension metric interface will
+return a size represented as a metric value ie measured in square meters so this method will simply return the value stored in the size and square meters property no additional calculation and this method is needed and the getsize method that implements the get sales member in the eye dimension imperial interface we need to perform a mathematical calculation we do this by multiplying the values stored in the size and square meters property by ten point seven four six this will give us the equivalent size measured in
+square feet we can then round off the result to two decimal places by using C sharps in built math classes round method like this so let's look at how to write code to use explicitly implements that interface members from calling client code let's go to our main method let's write code to create an apartment object so if we wish to execute the code for the apartment classes getsize method that is an explicit implementation of the I Imperial interfaces get sized method definition we need to define an
+object variable of type I dimension Imperial and assign the apartment object to this variable and if we wish to execute code for the apartment classes get SARS method that is an explicit implementation of the I dimension metric interfaces get SARS method definition we need to define an object variable of type I dimension metric and assign the apartment object to this variable let's write the code that writes the return values of these two methods to the console screen you and you can see presented to us on the
+console screen the size of the apartment represented by the Imperial value in square feet and on the following line the metric value equivalent in square meters excellent 
+
+
+we've discussed the rules associated with interfaces and how to apply them in code to implement a structural design for our applications we've discussed and demonstrated how interfaces and abstract classes can be applied in code to abstract common functionality that can be used by multiple types we've discussed and demonstrated how
+abstraction in object-oriented programming can be applied to ensure common functionality is implemented just once in code for an application we demonstrated that interfaces can only contain member definitions and not code implementations for those members however a new feature was released with c-sharp version 8 which allows developers the ability to implement default implementations for interface members this feature provides the benefit of adding new members to interfaces without breaking existing code we looked at the implicit
+implementation of interfaces and the explicit implementation of interfaces we demonstrated through a code example how to consume explicitly implemented interface members from client code please like subscribe share comments to support the channel it will be greatly appreciated and please ring the bells so you can be notified of future content which will be coming soon as always the code created for this tutorial can be downloaded from github a link to the appropriate repository has been included below in the description in the next
+tutorial which will be the twenty-first part of the c-sharp for beginners course will focus on exception handling thank you and take care [Music] you

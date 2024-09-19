@@ -14,6 +14,8 @@ public static class CivilEngineeringProgram
         employee.JoinDate = new DateTime(2010, 01, 01);
         employee.GetBasicInformation().Dump();
         employee.work();
+        //employee.GetAdditionalInformation();
+        
     }
 }
 
