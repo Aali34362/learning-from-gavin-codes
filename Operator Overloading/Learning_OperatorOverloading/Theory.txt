@@ -1,0 +1,132 @@
+In C#, operator overloading allows you to define or modify the behavior of operators (+, -, *, etc.)
+for your custom types (like classes or structs). 
+This enables instances of those types to be used with operators in a way that makes sense for that specific type.
+
+How to Overload Operators in C#
+To overload an operator, you must define a static method in the class or struct that the operator works with. 
+The method's name is prefixed with the operator keyword, followed by the operator symbol. 
+The parameters depend on the operator you are overloading.
+
+Example of Operator Overloading
+Let’s say we have a class Point that represents a point in a 2D space. We can overload the + and - operators to add or subtract two points.
+using System;
+
+public class Point
+{
+    public int X { get; set; }
+    public int Y { get; set; }
+
+    // Constructor
+    public Point(int x, int y)
+    {
+        X = x;
+        Y = y;
+    }
+
+    // Overload the + operator
+    public static Point operator +(Point p1, Point p2)
+    {
+        return new Point(p1.X + p2.X, p1.Y + p2.Y);
+    }
+
+    // Overload the - operator
+    public static Point operator -(Point p1, Point p2)
+    {
+        return new Point(p1.X - p2.X, p1.Y - p2.Y);
+    }
+
+    // Override ToString for easier display
+    public override string ToString()
+    {
+        return $"({X}, {Y})";
+    }
+}
+
+public class Program
+{
+    public static void Main()
+    {
+        Point p1 = new Point(3, 4);
+        Point p2 = new Point(1, 2);
+
+        // Using the overloaded + operator
+        Point resultAdd = p1 + p2;
+        Console.WriteLine($"p1 + p2 = {resultAdd}");
+
+        // Using the overloaded - operator
+        Point resultSub = p1 - p2;
+        Console.WriteLine($"p1 - p2 = {resultSub}");
+    }
+}
+
+
+Explanation:
+    We define the + operator by overloading it inside the Point class. 
+    The + operator takes two Point instances as parameters and returns a new Point whose coordinates are the sum of the two points' coordinates.
+    Similarly, we define the - operator to subtract the coordinates of two Point instances.
+    This allows us to use + and - operators with Point objects just like we would with primitive types.
+
+List of Overloadable Operators
+
+Here is a list of operators that can be overloaded in C#:
+
+    Arithmetic operators: +, -, *, /, %
+    Comparison operators: ==, !=, <, >, <=, >=
+    Logical operators: &, |, ^, !, &&, ||
+    Increment/Decrement operators: ++, --
+    Indexing operator: []
+    Conversion operators: explicit, implicit
+
+Important Notes:
+    Unary vs Binary Operators: Unary operators (like !, ++, --) work on one operand, while binary operators (like +, -, *, etc.) work on two.
+    Symmetry with Comparison Operators: When you overload one of the comparison operators (e.g., ==), 
+    it’s a good practice to also overload the opposite one (e.g., !=).
+    Cannot Overload Certain Operators: Some operators, like &&, ||, [], +=, *=, cannot be overloaded directly.
+
+Operator Overloading in Real-World Scenarios
+    Vectors and Matrices: You might overload +, -, *, and / to make vector or matrix arithmetic more intuitive.
+    Complex Numbers: You could overload arithmetic operators to handle complex number operations.
+    Custom String Handling: Overloading the + operator to concatenate objects representing some form of text or documents.
+
+If you have a specific class or case where you want to use operator overloading, feel free to ask!
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+-------------------------------------------------
+
+operator overloading this tutorial will be a quick insight into operator overloading and follows from the last tutorial which provided an overview on c-sharp operators through the demonstration of code examples this tutorial will provide one code example this will be a short tutorial to highlight that it is possible to overload operators in c-sharp the purpose of this application is to create a new rectangle which will contain the dimensions of two other rectangles added together so we could encapsulate this functionality in a
+method that accepts two rectangle objects as parameters and returns a new rectangle containing the sum of the two rectangles dimensions but there is a cleaner solution which encapsulates the same functionality using c-sharp operator overloading we're going to overload the plus operator for the rectangle objects and then simply add the two rectangle objects together by implementing the plus operator for this purpose once we have overloaded the plus operator for the rectangle class we will be able to simply apply the plus
+operator between two rectangle objects so let's first create our rectangle class let's define two integer public fields at the top of the class which will contain the width and height dimensions of rectangle objects derived from this class the fact that these fields of public means their values can be accessed from code outside the rectangle class let's then create the constructor for the rectangle class the constructor must be given the same name as the class the constructor must not return a value this constructor will
+accept two parameters namely integer parameters to store the rectangles width and height within the constructor code is written to assign the parameter values to the public fields of this class right so we want to write code that will enable the overloading of the plus operator for rectangle objects so this code will basically look like a method but in order for this code to enable operator overloading it must obey certain rules we must use the static keyword followed by the type of object we wish to return as the result for the
+plus operation applied between the two rectangle operands then we must follow this with the operator keyword and then follow this with the operator symbol that represents the operator we wish to overload in this case it is the plus operator now we want to add two objects of the rectangle type together so this operator overload method will accept two objects of type rectangle as parameters we'll name the first parameter rect one and the second parameter rect two right now we are ready to implement our add operation code this code will be
+called when the plus operator is applied between any two objects instantiate it from the rectangle class and the code is very simple we simply instantiate a new object of type rectangle in the construction of this object we pass in the added width dimensions of the two rectangles passed into the operator overload method two the width parameter of the rectangle we are creating we also pass in the added height dimension of the two rectangle objects passed to the operator overload method two the object of type rectangle that we
+are creating once the new rectangle object has been created we simply write the code to return the new rectangle object we've now successfully implemented operator overloading right let's write the code to test this in our main method so we'll first create two objects both of type of rectangle the first rectangle named rect one as a width dimension of 12 and a heart dimension of 10 the second rectangle named rx2 has a width dimension of five and a height dimension of two so let's create codes that will
+appropriately add these two rectangles together and create a new object of type rectangle through an addition operation so because we have enabled the plus operates to be overloaded for any object of type rectangle we are able to add the dimensions of rect one direct to by simply applying the plus operator between the two rectangle objects and return a value from this operation through an object reference variable of type rectangle this rectangle object reference variable is named ricked result let's write the code to output a
+simple narrative showing the addition operation applied to two rectangle objects along with the result of the add operation you and the result is as expected the new rectangle represents a width dimension of 17 which is twelve plus five and a hot dimension of twelve which is ten plus two I hope you have enjoyed this short video this code can be downloaded from github details or below in the description please hit the thumbs up icon if you feel you have gained value from this tutorial and please subscribe if you
+already subscribed please hit the bell icon to be notified of future content which will be coming soon I look forward to your comments thank you

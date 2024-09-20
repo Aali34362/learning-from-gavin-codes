@@ -7,6 +7,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Interface", "Interface", "{
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Learning_Interfaces", "Interfaces\Learning_Interfaces\Learning_Interfaces.csproj", "{2841EA1B-F558-45BC-80C0-E944706E967F}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Operator Overloading", "Operator Overloading", "{7EEE2F8F-5082-4719-B368-3D1D8FB1C658}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Learning_OperatorOverloading", "Operator Overloading\Learning_OperatorOverloading\Learning_OperatorOverloading.csproj", "{F5BCA9CA-9269-4704-86B0-98E7B89B27F7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -17,12 +21,17 @@ Global
 		{2841EA1B-F558-45BC-80C0-E944706E967F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2841EA1B-F558-45BC-80C0-E944706E967F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2841EA1B-F558-45BC-80C0-E944706E967F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F5BCA9CA-9269-4704-86B0-98E7B89B27F7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F5BCA9CA-9269-4704-86B0-98E7B89B27F7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F5BCA9CA-9269-4704-86B0-98E7B89B27F7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F5BCA9CA-9269-4704-86B0-98E7B89B27F7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{2841EA1B-F558-45BC-80C0-E944706E967F} = {652EA759-822F-4F6E-BD35-7BAEB5A1B51D}
+		{F5BCA9CA-9269-4704-86B0-98E7B89B27F7} = {7EEE2F8F-5082-4719-B368-3D1D8FB1C658}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {74270074-E0A6-489A-BCE3-A4320820D2A6}
