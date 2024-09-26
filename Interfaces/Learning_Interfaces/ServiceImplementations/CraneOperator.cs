@@ -75,6 +75,7 @@ public class CraneOperator : IEmployee, ICraneOperatorResponsibilities, IContrac
     public DateTime? JoinDate { get; set; }
     public string? HighestQualification { get; set; }
     public DateTime ContractEndDate { get; set; }
+    DateTime IEmployee.JoinDate { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
 
     public string GetBasicInformation()
     {
