@@ -31,46 +31,6 @@ public static class MemoryStreamProgram
         EmployeeRecordAfter(unicodeEncoding, memoryStream);
     }    
 
-    #region Get Fields
-    private static string GetField(UnicodeEncoding unicodeEncoding, MemoryStream memoryStream, int offset, int length)
-    {
-        memoryStream.Seek(offset, SeekOrigin.Begin);
-
-        byte[] byteArray = new byte[length];
-
-        int count = memoryStream.Read(byteArray, 0, length);
-
-        string fieldValue = new string(ReturnCharArrayFromByteArray(unicodeEncoding, byteArray, count));
-
-        return fieldValue.Trim();
-
-    }
-
-    private static string GetField(UnicodeEncoding unicodeEncoding, MemoryStream memoryStream, int length)
-    {
-        memoryStream.Seek(0, SeekOrigin.Current);
-
-        byte[] byteArray = new byte[length];
-
-        int count = memoryStream.Read(byteArray, 0, length);
-
-        string fieldValue = new string(ReturnCharArrayFromByteArray(unicodeEncoding, byteArray, count));
-
-        return fieldValue.Trim();
-
-    }
-
-    private static char[] ReturnCharArrayFromByteArray(UnicodeEncoding unicodeEncoding, byte[] byteArray, int count)
-    {
-        char[] charArray = new char[unicodeEncoding.GetCharCount(byteArray, 0, count)];
-
-        unicodeEncoding.GetDecoder().GetChars(byteArray, 0, count, charArray, 0);
-
-        return charArray;
-
-    }
-    #endregion 
-
     #region Add
     public static void SeedData(UnicodeEncoding unicodeEncoding, MemoryStream memoryStream)
     {
@@ -147,4 +107,29 @@ public static class MemoryStreamProgram
         Console.WriteLine($"Manager: {GetField(unicodeEncoding, memoryStream, ConstantClass.IsManagerLength)}");
     }
     #endregion
+
+    #region Get Fields
+    private static string GetField(UnicodeEncoding unicodeEncoding, MemoryStream memoryStream, int offset, int length)
+    {
+        memoryStream.Seek(offset, SeekOrigin.Begin);
+
+        return new string(ReturnCharArrayFromByteArray(unicodeEncoding, new byte[length], memoryStream.Read(new byte[length], 0, length))).Trim();
+    }
+
+    private static string GetField(UnicodeEncoding unicodeEncoding, MemoryStream memoryStream, int length)
+    {
+        memoryStream.Seek(0, SeekOrigin.Current);
+
+        return new string(ReturnCharArrayFromByteArray(unicodeEncoding, new byte[length], memoryStream.Read(new byte[length], 0, length) )).Trim();
+    }
+
+    private static char[] ReturnCharArrayFromByteArray(UnicodeEncoding unicodeEncoding, byte[] byteArray, int count)
+    {
+        char[] charArray = new char[unicodeEncoding.GetCharCount(byteArray, 0, count)];
+
+        unicodeEncoding.GetDecoder().GetChars(byteArray, 0, count, charArray, 0);
+
+        return charArray;
+    }
+    #endregion 
 }
