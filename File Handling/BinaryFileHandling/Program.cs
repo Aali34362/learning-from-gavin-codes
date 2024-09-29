@@ -1,0 +1,5 @@
+﻿using BinaryFileHandling;
+
+BinaryFileProgram.BinaryFileProgramMain();
+
+

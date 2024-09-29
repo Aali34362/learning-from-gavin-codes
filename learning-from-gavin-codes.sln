@@ -15,6 +15,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "File Handling", "File Handl
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Learning_FileHandling", "File Handling\Learning_FileHandling\Learning_FileHandling.csproj", "{42E23814-D250-43E9-ACB7-629FC950DECC}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WildCatsApplication", "File Handling\WildCatsApplication\WildCatsApplication.csproj", "{4CE1C9B5-19E6-4015-BD85-8E34A99C787D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BinaryFileHandling", "File Handling\BinaryFileHandling\BinaryFileHandling.csproj", "{E9AC0F79-0F31-4129-8C5E-4E942213144F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +37,14 @@ Global
 		{42E23814-D250-43E9-ACB7-629FC950DECC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{42E23814-D250-43E9-ACB7-629FC950DECC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{42E23814-D250-43E9-ACB7-629FC950DECC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4CE1C9B5-19E6-4015-BD85-8E34A99C787D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4CE1C9B5-19E6-4015-BD85-8E34A99C787D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4CE1C9B5-19E6-4015-BD85-8E34A99C787D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4CE1C9B5-19E6-4015-BD85-8E34A99C787D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E9AC0F79-0F31-4129-8C5E-4E942213144F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E9AC0F79-0F31-4129-8C5E-4E942213144F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E9AC0F79-0F31-4129-8C5E-4E942213144F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E9AC0F79-0F31-4129-8C5E-4E942213144F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -41,6 +53,8 @@ Global
 		{2841EA1B-F558-45BC-80C0-E944706E967F} = {652EA759-822F-4F6E-BD35-7BAEB5A1B51D}
 		{F5BCA9CA-9269-4704-86B0-98E7B89B27F7} = {7EEE2F8F-5082-4719-B368-3D1D8FB1C658}
 		{42E23814-D250-43E9-ACB7-629FC950DECC} = {034A78DC-0E44-47AC-B6E4-5BA63D76857C}
+		{4CE1C9B5-19E6-4015-BD85-8E34A99C787D} = {034A78DC-0E44-47AC-B6E4-5BA63D76857C}
+		{E9AC0F79-0F31-4129-8C5E-4E942213144F} = {034A78DC-0E44-47AC-B6E4-5BA63D76857C}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {74270074-E0A6-489A-BCE3-A4320820D2A6}
