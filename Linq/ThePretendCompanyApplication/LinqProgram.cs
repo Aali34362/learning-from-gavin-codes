@@ -11,6 +11,7 @@ public static class LinqProgram
         List<Department> departmentList = Data._departments;
         List<Employee> employeeList = Data._employees;
 
+        #region Lesson 1
         Console.WriteLine("GetEmployeeList");
         GetEmployeeList(employeeList);
 
@@ -19,7 +20,9 @@ public static class LinqProgram
 
         Console.WriteLine("ManipulateData");
         ManipulateData(employeeList, departmentList);
+        #endregion
 
+        #region Lesson 2
         Console.WriteLine("SelectWhereMethodOperators");
         SelectWhereMethodOperators(employeeList);
 
@@ -43,9 +46,31 @@ public static class LinqProgram
 
         Console.WriteLine("GroupJoinQueryOperation");
         GroupJoinQueryOperation(employeeList, departmentList);
+        #endregion
+
+        #region Lesson 3
+        Console.WriteLine("OrderByMethodOperation");
+        OrderByMethodOperation(employeeList, departmentList);
+
+        Console.WriteLine("OrderByQueryOperation");
+        OrderByQueryOperation(employeeList, departmentList);
+
+        Console.WriteLine("OrderByDescendingMethodOperation");
+        OrderByDescendingMethodOperation(employeeList, departmentList);
+
+        Console.WriteLine("OrderByDescendingQueryOperation");
+        OrderByDescendingQueryOperation(employeeList, departmentList);
+
+        Console.WriteLine("ThenByMethodOperation");
+        ThenByMethodOperation(employeeList, departmentList);
+
+        Console.WriteLine("ThenByDescendingMethodOperation");
+        ThenByDescendingMethodOperation(employeeList, departmentList);
+
+        #endregion
     }
 
-    //Lesson 1
+    #region Lesson 1
     private static void GetEmployeeList(List<Employee> employeeList)
     {
         var filteredEmployees = employeeList.Filter(emp => emp.AnnualSalary < 50000);
@@ -108,8 +133,9 @@ public static class LinqProgram
 
         Console.ReadKey();
     }
+    #endregion
 
-    //Lesson 2
+    # region Lesson 2
     private static void SelectWhereMethodOperators(List<Employee> employeeList)
     {
         var results = employeeList.Select(e => new
@@ -269,6 +295,118 @@ public static class LinqProgram
         }
 
     }
+    #endregion
 
-    //Lesson 3
+    #region Lesson 3
+    //// Sorting Operations OrderBy, OrderByDescending, ThenBy, ThenByDescending
+    private static void OrderByMethodOperation(List<Employee> employeeList, List<Department> departmentList)
+    {
+        var results = employeeList.Join(departmentList, e => e.DepartmentId, d => d.Id,
+            (emp, dept) => new
+            {
+                Id = emp.Id,
+                FirstName = emp.FirstName,
+                LastName = emp.LastName,
+                AnnualSalary = emp.AnnualSalary,
+                DepartmentId = emp.DepartmentId,
+                DepartmentName = dept.LongName
+            }).OrderBy(o => o.DepartmentId);
+
+        foreach (var item in results)
+            Console.WriteLine($"First Name: {item.FirstName,-10} Last Name: {item.LastName,-10} Annual Salary: {item.AnnualSalary,10}\tDepartment Name: {item.DepartmentName}");
+
+    }
+
+    private static void OrderByQueryOperation(List<Employee> employeeList, List<Department> departmentList)
+    {
+        var results = from emp in employeeList
+                      join dept in departmentList
+                      on emp.DepartmentId equals dept.Id
+                      orderby emp.DepartmentId, emp.AnnualSalary
+                      select new
+                      {
+                          Id = emp.Id,
+                          FirstName = emp.FirstName,
+                          LastName = emp.LastName,
+                          AnnualSalary = emp.AnnualSalary,
+                          DepartmentId = emp.DepartmentId,
+                          DepartmentName = dept.LongName
+                      };
+        foreach (var item in results)
+            Console.WriteLine($"First Name: {item.FirstName,-10} Last Name: {item.LastName,-10} Annual Salary: {item.AnnualSalary,10}\tDepartment Name: {item.DepartmentName}");
+    }
+
+    private static void OrderByDescendingMethodOperation(List<Employee> employeeList, List<Department> departmentList)
+    {
+        var results = employeeList.Join(departmentList, e => e.DepartmentId, d => d.Id,
+           (emp, dept) => new
+           {
+               Id = emp.Id,
+               FirstName = emp.FirstName,
+               LastName = emp.LastName,
+               AnnualSalary = emp.AnnualSalary,
+               DepartmentId = emp.DepartmentId,
+               DepartmentName = dept.LongName
+           }).OrderByDescending(o => o.DepartmentId);
+
+        foreach (var item in results)
+            Console.WriteLine($"First Name: {item.FirstName,-10} Last Name: {item.LastName,-10} Annual Salary: {item.AnnualSalary,10}\tDepartment Name: {item.DepartmentName}");
+
+    }
+
+    private static void OrderByDescendingQueryOperation(List<Employee> employeeList, List<Department> departmentList)
+    {
+        var results = from emp in employeeList
+                      join dept in departmentList
+                      on emp.DepartmentId equals dept.Id
+                      orderby emp.DepartmentId, emp.AnnualSalary descending
+                      select new
+                      {
+                          Id = emp.Id,
+                          FirstName = emp.FirstName,
+                          LastName = emp.LastName,
+                          AnnualSalary = emp.AnnualSalary,
+                          DepartmentId = emp.DepartmentId,
+                          DepartmentName = dept.LongName
+                      };
+        foreach (var item in results)
+            Console.WriteLine($"First Name: {item.FirstName,-10} Last Name: {item.LastName,-10} Annual Salary: {item.AnnualSalary,10}\tDepartment Name: {item.DepartmentName}");
+    }
+
+    private static void ThenByMethodOperation(List<Employee> employeeList, List<Department> departmentList)
+    {
+        var results = employeeList.Join(departmentList, e => e.DepartmentId, d => d.Id,
+                    (emp, dept) => new
+                    {
+                        Id = emp.Id,
+                        FirstName = emp.FirstName,
+                        LastName = emp.LastName,
+                        AnnualSalary = emp.AnnualSalary,
+                        DepartmentId = emp.DepartmentId,
+                        DepartmentName = dept.LongName
+                    }).OrderBy(o => o.DepartmentId).ThenBy(o => o.AnnualSalary);
+
+        foreach (var item in results)
+            Console.WriteLine($"First Name: {item.FirstName,-10} Last Name: {item.LastName,-10} Annual Salary: {item.AnnualSalary,10}\tDepartment Name: {item.DepartmentName}");
+    }
+
+    private static void ThenByDescendingMethodOperation(List<Employee> employeeList, List<Department> departmentList)
+    {
+        var results = employeeList.Join(departmentList, e => e.DepartmentId, d => d.Id,
+            (emp, dept) => new
+            {
+                Id = emp.Id,
+                FirstName = emp.FirstName,
+                LastName = emp.LastName,
+                AnnualSalary = emp.AnnualSalary,
+                DepartmentId = emp.DepartmentId,
+                DepartmentName = dept.LongName
+            }).OrderByDescending(o => o.DepartmentId).ThenByDescending(o => o.AnnualSalary);
+
+        foreach (var item in results)
+            Console.WriteLine($"First Name: {item.FirstName,-10} Last Name: {item.LastName,-10} Annual Salary: {item.AnnualSalary,10}\tDepartment Name: {item.DepartmentName}");
+    }
+
+
+    #endregion
 }

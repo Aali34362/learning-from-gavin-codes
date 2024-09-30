@@ -39,7 +39,7 @@ public class Data
 
     private static List<Department> GetDepartment() => _departments = GetFakeDepartmentDetails().Generate(10);
 
-    public static void GetDepartments()
+    private static void GetDepartments()
     {
         Department department = new Department
         {
@@ -77,7 +77,7 @@ public class Data
     
     private static List<Employee> GetEmployee() => _employees = GetFakeEmployeeDetails().Generate(10);
 
-    public static void GetEmployees()
+    private static void GetEmployees()
     {
         Employee employee = new Employee
         {
