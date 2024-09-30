@@ -6,7 +6,7 @@ using ThePretendCompanyApplication;
 var host = Host.CreateDefaultBuilder(args)
     .ConfigureServices((context, services) =>
     {
-        services.AddSingleton<Data>();
+        services.AddTransient<Data>();
     })
     .Build();
 
