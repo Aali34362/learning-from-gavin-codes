@@ -15,6 +15,8 @@ public class Data
 
         _employees = GetEmployee();
         GetEmployees();
+
+        GetIEnumerableDepartments(_employees);
     }
 
     #region Department
@@ -60,6 +62,40 @@ public class Data
             Id = 3,
             ShortName = "TE",
             LongName = "Technology"
+        };
+        _departments.Add(department);
+    }
+
+    private static void GetIEnumerableDepartments(IEnumerable<Employee> employees)
+    {
+        Department department = new Department
+        {
+            Id = 4,
+            ShortName = "PS",
+            LongName = "Production Support",
+            Employees = from emp in employees
+                        where emp.DepartmentId == 4
+                        select emp
+        };
+        _departments.Add(department);
+        department = new Department
+        {
+            Id = 5,
+            ShortName = "SA",
+            LongName = "Sales and Marketing",
+            Employees = from emp in employees
+                        where emp.DepartmentId == 5
+                        select emp
+        };
+        _departments.Add(department);
+        department = new Department
+        {
+            Id = 6,
+            ShortName = "RE",
+            LongName = "Research and Development",
+            Employees = from emp in employees
+                        where emp.DepartmentId == 6
+                        select emp
         };
         _departments.Add(department);
     }
@@ -117,6 +153,38 @@ public class Data
             AnnualSalary = 30000.2m,
             IsManager = false,
             DepartmentId = 3
+        };
+        _employees.Add(employee);
+        employee = new Employee
+        {
+            Id = 5,
+            FirstName = "John",
+            LastName = "Doe",
+            AnnualSalary = 45000.5m,
+            IsManager = false,
+            DepartmentId = 4
+        };
+        _employees.Add(employee);
+
+        employee = new Employee
+        {
+            Id = 6,
+            FirstName = "Emily",
+            LastName = "Smith",
+            AnnualSalary = 55000.75m,
+            IsManager = true,
+            DepartmentId = 5
+        };
+        _employees.Add(employee);
+
+        employee = new Employee
+        {
+            Id = 7,
+            FirstName = "Michael",
+            LastName = "Johnson",
+            AnnualSalary = 62000.3m,
+            IsManager = false,
+            DepartmentId = 6
         };
         _employees.Add(employee);
     }
