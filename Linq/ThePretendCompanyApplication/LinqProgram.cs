@@ -12,101 +12,101 @@ public static class LinqProgram
         List<Employee> employeeList = Data._employees;
 
         #region Lesson 1
-        Console.WriteLine("GetEmployeeList");
+        Console.WriteLine("\n GetEmployeeList :");
         GetEmployeeList(employeeList);
 
-        Console.WriteLine("GetDepartmentList");
+        Console.WriteLine("\n GetDepartmentList :");
         GetDepartmentList(departmentList);
 
-        Console.WriteLine("ManipulateData");
+        Console.WriteLine("\n ManipulateData :");
         ManipulateData(employeeList, departmentList);
         #endregion
 
         #region Lesson 2
-        Console.WriteLine("SelectWhereMethodOperators");
+        Console.WriteLine("\n SelectWhereMethodOperators :");
         SelectWhereMethodOperators(employeeList);
 
-        Console.WriteLine("SelectWhereQueryOperators");
+        Console.WriteLine("\n SelectWhereQueryOperators :");
         SelectWhereQueryOperators(employeeList);
 
-        Console.WriteLine("DeferredExecution");
+        Console.WriteLine("\n DeferredExecution :");
         DeferredExecution(employeeList);
 
-        Console.WriteLine("ImmediateExecution");
+        Console.WriteLine("\n ImmediateExecution :");
         ImmediateExecution(employeeList);
 
-        Console.WriteLine("JoinMethodOperation");
+        Console.WriteLine("\n JoinMethodOperation :");
         JoinMethodOperation(employeeList, departmentList);
 
-        Console.WriteLine("JoinQueryOperation");
+        Console.WriteLine("\n JoinQueryOperation :");
         JoinQueryOperation(employeeList, departmentList);
 
-        Console.WriteLine("GroupJoinMethodOperation");
+        Console.WriteLine("\n GroupJoinMethodOperation :");
         GroupJoinMethodOperation(employeeList, departmentList);
 
-        Console.WriteLine("GroupJoinQueryOperation");
+        Console.WriteLine("\n GroupJoinQueryOperation :");
         GroupJoinQueryOperation(employeeList, departmentList);
         #endregion
 
         #region Lesson 3
-        Console.WriteLine("OrderByMethodOperation");
+        Console.WriteLine("\n OrderByMethodOperation :");
         OrderByMethodOperation(employeeList, departmentList);
 
-        Console.WriteLine("OrderByQueryOperation");
+        Console.WriteLine("\n OrderByQueryOperation :");
         OrderByQueryOperation(employeeList, departmentList);
 
-        Console.WriteLine("OrderByDescendingMethodOperation");
+        Console.WriteLine("\n OrderByDescendingMethodOperation :");
         OrderByDescendingMethodOperation(employeeList, departmentList);
 
-        Console.WriteLine("OrderByDescendingQueryOperation");
+        Console.WriteLine("\n OrderByDescendingQueryOperation :");
         OrderByDescendingQueryOperation(employeeList, departmentList);
 
-        Console.WriteLine("ThenByMethodOperation");
+        Console.WriteLine("\n ThenByMethodOperation :");
         ThenByMethodOperation(employeeList, departmentList);
 
-        Console.WriteLine("ThenByDescendingMethodOperation");
+        Console.WriteLine("\n ThenByDescendingMethodOperation :");
         ThenByDescendingMethodOperation(employeeList, departmentList);
 
-        Console.WriteLine("GroupingOperators");
+        Console.WriteLine("\n GroupingOperators :");
         GroupingOperators(employeeList, departmentList);
 
-        Console.WriteLine("ToLookupOperators");
+        Console.WriteLine("\n ToLookupOperators :");
         ToLookupOperators(employeeList, departmentList);
 
-        Console.WriteLine("All");
+        Console.WriteLine("\n All :");
         All(employeeList);
 
-        Console.WriteLine("Any");
+        Console.WriteLine("\n Any :");
         Any(employeeList);
 
-        Console.WriteLine("ContainsOperator");
+        Console.WriteLine("\n ContainsOperator :");
         ContainsOperator(employeeList);
 
-        Console.WriteLine("OfTypeOperator");
+        Console.WriteLine("\n OfTypeOperator :");
         OfTypeOperator();
 
-        Console.WriteLine("ElementAt");
+        Console.WriteLine("\n ElementAt :");
         ElementAt(employeeList);
 
-        Console.WriteLine("ElementAtOrDefault");
+        Console.WriteLine("\n ElementAtOrDefault :");
         ElementAtOrDefault(employeeList);
 
-        Console.WriteLine("First");
+        Console.WriteLine("\n First :");
         First();
 
-        Console.WriteLine("FirstOrDefault");
+        Console.WriteLine("\n FirstOrDefault :");
         FirstOrDefault();
 
-        Console.WriteLine("Last");
+        Console.WriteLine("\n Last :");
         Last();
 
-        Console.WriteLine("LastOrDefault");
+        Console.WriteLine("\n LastOrDefault :");
         LastOrDefault();
 
-        Console.WriteLine("Single");
-        Single(employeeList);
+        Console.WriteLine("\n Single :");
+        //Single(employeeList);
 
-        Console.WriteLine("SingleOrDefault");
+        Console.WriteLine("\n SingleOrDefault :");
         SingleOrDefault(employeeList);
         #endregion
 
@@ -173,8 +173,6 @@ public static class LinqProgram
         Console.WriteLine($"Average Annual Salary: {averageAnnualSalary}");
         Console.WriteLine($"Highest Annual Salary: {highestAnnualSalary}");
         Console.WriteLine($"Lowest Annual Salary: {lowestAnnualSalary}");
-
-        Console.ReadKey();
     }
     #endregion
 
