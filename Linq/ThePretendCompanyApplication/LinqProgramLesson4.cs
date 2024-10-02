@@ -61,6 +61,35 @@ public static class LinqProgramLesson4
         Console.WriteLine("\n Skip :");
         Skip(employeeList);
 
+        Console.WriteLine("\n SkipWhile :");
+        SkipWhile(employeeList);
+
+        Console.WriteLine("\n Take :");
+        Take(employeeList);
+
+        Console.WriteLine("\n TakeWhile :");
+        TakeWhile(employeeList);
+
+        Console.WriteLine("\n ToList :");
+        ToList(employeeList);
+
+        Console.WriteLine("\n ToDictionary :");
+        ToDictionary(employeeList);
+
+        Console.WriteLine("\n ToArray :");
+        ToArray(employeeList);
+
+        Console.WriteLine("\n Let :");
+        Let(employeeList);
+
+        Console.WriteLine("\n Into :");
+        Into(employeeList);
+
+        Console.WriteLine("\n Select :");
+        Select(departmentList);
+
+        Console.WriteLine("\n Select :");
+        SelectMany(departmentList);
         #endregion
     }
 
@@ -290,94 +319,110 @@ public static class LinqProgramLesson4
             Console.WriteLine($"{item.Id,-5} {item.FirstName,-10} {item.LastName,-10}");
     }
     ////SkipWhile
-
-    //employeeList.Add(new Employee { Id = 5, FirstName = "Sam", LastName = "Davis", AnnualSalary = 100000.0m });
-
-    //var results = employeeList.SkipWhile(e => e.AnnualSalary > 50000);
-    //foreach (var item in results)
-    //    Console.WriteLine($"{item.Id,-5} {item.FirstName,-10} {item.LastName,-10} {item.AnnualSalary,10}");
-
+    private static void SkipWhile(List<Employee> employeeList)
+    {
+        employeeList.Add(new Employee { Id = 5, FirstName = "Sam", LastName = "Davis", AnnualSalary = 100000.0m });
+        var results = employeeList.SkipWhile(e => e.AnnualSalary > 50000);
+        foreach (var item in results)
+            Console.WriteLine($"{item.Id,-5} {item.FirstName,-10} {item.LastName,-10} {item.AnnualSalary,10}");
+    }
+    
     ////Take
-    //var results = employeeList.Take(2);
-    //foreach (var item in results)
-    //    Console.WriteLine($"{item.Id,-5} {item.FirstName,-10} {item.LastName,-10}");
-
+    private static void Take(List<Employee> employeeList)
+    {
+        var results = employeeList.Take(2);
+        foreach (var item in results)
+            Console.WriteLine($"{item.Id,-5} {item.FirstName,-10} {item.LastName,-10}");
+    }
+    
     ////TakeWhile
-
-    //employeeList.Add(new Employee { Id = 5, FirstName = "Sam", LastName = "Davis", AnnualSalary = 100000 });
-
-    //var results = employeeList.TakeWhile(e => e.AnnualSalary > 50000);
-    //foreach (var item in results)
-    //    Console.WriteLine($"{item.Id,-5} {item.FirstName,-10} {item.LastName,-10} {item.AnnualSalary,10}");
+    private static void TakeWhile(List<Employee> employeeList)
+    {
+        employeeList.Add(new Employee { Id = 5, FirstName = "Sam", LastName = "Davis", AnnualSalary = 100000 });
+        var results = employeeList.TakeWhile(e => e.AnnualSalary > 50000);
+        foreach (var item in results)
+            Console.WriteLine($"{item.Id,-5} {item.FirstName,-10} {item.LastName,-10} {item.AnnualSalary,10}");
+    }
 
     ////Conversion Operators - ToList, ToDictionary, ToArray
     ////ToList
-
-    //List<Employee> results = (from emp in employeeList
-    //                         where emp.AnnualSalary > 50000
-    //                         select emp).ToList();
-
-    //foreach (var item in results)
-    //    Console.WriteLine($"{item.Id,-5} {item.FirstName,-10} {item.LastName,-10} {item.AnnualSalary,10}");
-
+    private static void ToList(List<Employee> employeeList)
+    {
+        List<Employee> results = (from emp in employeeList
+                                  where emp.AnnualSalary > 50000
+                                  select emp).ToList();
+        foreach (var item in results)
+            Console.WriteLine($"{item.Id,-5} {item.FirstName,-10} {item.LastName,-10} {item.AnnualSalary,10}");
+    }
     ////ToDictionary
-
-    //Dictionary<int, Employee> dictionary = (from emp in employeeList
-    //                                        where emp.AnnualSalary > 50000
-    //                                        select emp).ToDictionary<Employee, int>(e => e.Id);
-
-    //foreach (var key in dictionary.Keys)
-    //    Console.WriteLine($"Key: {key}, Value: {dictionary[key].FirstName} {dictionary[key].LastName}");
-
+    private static void ToDictionary(List<Employee> employeeList)
+    {
+        Dictionary<int, Employee> dictionary = (from emp in employeeList
+                                                where emp.AnnualSalary > 50000
+                                                select emp).ToDictionary<Employee, int>(e => e.Id);
+        foreach (var key in dictionary.Keys)
+            Console.WriteLine($"Key: {key}, Value: {dictionary[key].FirstName} {dictionary[key].LastName}");
+    }
     ////ToArray
-    //Employee[] results = (from emp in employeeList
-    //                      where emp.AnnualSalary > 50000
-    //                      select emp).ToArray();
+    private static void ToArray(List<Employee> employeeList)
+    {
+        Employee[] results = (from emp in employeeList
+                              where emp.AnnualSalary > 50000
+                              select emp).ToArray();
 
-    //foreach (var item in results)
-    //    Console.WriteLine($"{item.Id,-5} {item.FirstName,-10} {item.LastName,-10} {item.AnnualSalary,10}");
+        foreach (var item in results)
+            Console.WriteLine($"{item.Id,-5} {item.FirstName,-10} {item.LastName,-10} {item.AnnualSalary,10}");
+    }
 
     ////Let Clause and Into Clause
-
     ////Let
-    //var results = from emp in employeeList
-    //              let Initials = emp.FirstName.Substring(0, 1).ToUpper() + emp.LastName.Substring(0, 1).ToUpper()
-    //              let AnnualSalaryPlusBonus = (emp.IsManager) ? emp.AnnualSalary + (emp.AnnualSalary * 0.04m) : emp.AnnualSalary + (emp.AnnualSalary * 0.02m)
-    //              where Initials == "JS" || Initials == "SJ" && AnnualSalaryPlusBonus > 50000
-    //              select new
-    //              {
-    //                  Initials = Initials,
-    //                  FullName = emp.FirstName + " " + emp.LastName,
-    //                  AnnualSalaryPlusBonus = AnnualSalaryPlusBonus
-    //              };
+    private static void Let(List<Employee> employeeList)
+    {
+        var results = from emp in employeeList
+                      let Initials = emp.FirstName?.Substring(0, 1).ToUpper() + emp.LastName?.Substring(0, 1).ToUpper()
+                      let AnnualSalaryPlusBonus = (emp.IsManager) ? emp.AnnualSalary + (emp.AnnualSalary * 0.04m) : emp.AnnualSalary + (emp.AnnualSalary * 0.02m)
+                      where Initials == "JS" || Initials == "SJ" && AnnualSalaryPlusBonus > 50000
+                      select new
+                      {
+                          Initials = Initials,
+                          FullName = emp.FirstName + " " + emp.LastName,
+                          AnnualSalaryPlusBonus = AnnualSalaryPlusBonus
+                      };
 
-    //foreach (var item in results)
-    //    Console.WriteLine($"{item.Initials,-5} {item.FullName,-20} {item.AnnualSalaryPlusBonus,10}");
-
+        foreach (var item in results)
+            Console.WriteLine($"{item.Initials,-5} {item.FullName,-20} {item.AnnualSalaryPlusBonus,10}");
+    }
     ////Into
-    //var results = from emp in employeeList
-    //              where emp.AnnualSalary > 50000
-    //              select emp
-    //              into HighEarners
-    //              where HighEarners.IsManager == true
-    //              select HighEarners;
+    private static void Into(List<Employee> employeeList)
+    {
+        var results = from emp in employeeList
+                      where emp.AnnualSalary > 50000
+                      select emp
+                      into HighEarners
+                      where HighEarners.IsManager == true
+                      select HighEarners;
 
-    //foreach (var item in results)
-    //    Console.WriteLine($"{item.Id,-5} {item.FirstName,-10} {item.LastName,-10} {item.AnnualSalary,10}\t{item.IsManager}");
-
+        foreach (var item in results)
+            Console.WriteLine($"{item.Id,-5} {item.FirstName,-10} {item.LastName,-10} {item.AnnualSalary,10}\t{item.IsManager}");
+    }
+    
     ////Projection Operators - Select, SelectMany
     ////Select
-    //var results = departmentList.Select(d => d.Employees);
+    private static void Select(List<Department> departmentList)
+    {
+        var results = departmentList.Select(d => d.Employees);
 
-    //foreach(var items in results)
-    //    foreach(var item in items)
-    //        Console.WriteLine($"{item.Id,-5} {item.FirstName,-10} {item.LastName,-10} {item.AnnualSalary,10}\t{item.IsManager}");
-
+        foreach (var items in results)
+            foreach (var item in items!)
+                Console.WriteLine($"{item.Id,-5} {item.FirstName,-10} {item.LastName,-10} {item.AnnualSalary,10}\t{item.IsManager}");
+    }
     ////SelectMany
-    //var results = departmentList.SelectMany(d => d.Employees); //.OrderBy(o => o.Id);
+    private static void SelectMany(List<Department> departmentList)
+    {
+        var results = departmentList.SelectMany(d => d.Employees!); //.OrderBy(o => o.Id);
 
-    //foreach (var item in results)
-    //    Console.WriteLine($"{item.Id,-5} {item.FirstName,-10} {item.LastName,-10} {item.AnnualSalary,10}\t{item.IsManager}");
-
-    #endregion
-}
+        foreach (var item in results)
+            Console.WriteLine($"{item.Id,-5} {item.FirstName,-10} {item.LastName,-10} {item.AnnualSalary,10}\t{item.IsManager}");
+    }
+        #endregion
+    }
