@@ -10,4 +10,10 @@ var host = Host.CreateDefaultBuilder(args)
     })
     .Build();
 
-LinqProgram.LinqProgramMain();
+List<Department> departmentList = Data._departments;
+List<Employee> employeeList = Data._employees;
+
+LinqProgram.LinqProgramMain(departmentList, employeeList);
+LinqProgramLesson2.LinqProgramLesson2Main(departmentList, employeeList);
+LinqProgramLesson3.LinqProgramLesson3Main(departmentList, employeeList);
+LinqProgramLesson4.LinqProgramLesson4Main(departmentList, employeeList);
